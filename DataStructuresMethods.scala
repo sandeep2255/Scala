@@ -136,9 +136,94 @@ object DataStructuresMethods{
     println(filterSet)
 
     setA.foreach(println)
-    
+
+    // Arrays
+
+
+
+    val array1 = Array("kochi", "varkala", "thiruvananthapuram", "alappuzha")
+    val array2 = Array(1,2,3,4,5,6,7,8)
+    // empty array
+    val emptyArray = Array[Int]()
+    array2(0) = 10
+    array2.length
+    emptyArray.isEmpty
+    // array2+=9 // adding a value to array IS NOT possible in Array data type in scala becuase its fixed size
+    // to so import in array we had ArrayBuffer instead of array
+
+    import scala.collection.mutable.ArrayBuffer
+
+    // adding elements (Arrays are fixed size, so we use ArrayBuffer)
+
+    val arrayBuffer = ArrayBuffer(1,2,3,4,5,6,7)
+
+    arrayBuffer+=8
+    arrayBuffer-=5
+
+    print(arrayBuffer)
+
+    arrayBuffer.map(_*2)
+    arrayBuffer.filter(_!=2)
+    arrayBuffer.foreach(println)
+    val array_casted  = arrayBuffer.toArray // type casting back to Array
+
+
+    // Nested Array
+    val nested_array = Array(Array(1,2), Array(3,4), Array(5,6))
+    val flatArray2 = nested_array.flatMap(identity)
+    val flatArray3 = nested_array.flatten
+
+    flatArray3.slice(1,5)
+
+    val array4 = Array(30,40,10,80,60,20,50)
+    array4.sorted
+    array4.reverse
+
+    println(array4.reverse.mkString(","))
+
+    // groupBy method in scala
+    val cityNames = Array("kochi", "varkala", "thiruvananthapuram", "alappuzha")
+    val groupbyLen = cityNames.groupBy(_.length)
+    println(groupbyLen)
+    val groupbyFirstChar = cityNames.groupBy(_.charAt(0))
+    val groupbyOddEven = flatArray3.groupBy(num=>if(num%2==0) "even" else "odd")
+
+    groupbyOddEven.foreach{
+      case(key,value)=>println(s"$key:${value.mkString(",")}")
+    }
+
+    val nameArray = Array("Sandeep", "Athulya", "Ram", "Earl", "Omkar", "Shiva")
+
+    val groupByFChar = nameArray.groupBy(name=>if("AEIOUaeiou".contains(name.charAt(0))) "Vowels" else "Consonents")
+    groupByFChar.foreach {
+      case (key, value) => println(s"$key:${value.mkString(",")}")
+    }
+    // Collection - Map
+    import scala.collection.immutable
+    val immutableMap = immutable.Map("a"->1, "b"->2,"c"->3, "d"->4, "e"->5)
+
+
     import scala.collection.mutable
-    
-    
+    val mutableMap = mutable.Map("a"->1, "b"->2,"c"->3, "d"->4, "e"->5)
+
+    immutableMap.contains("a")
+    println(immutableMap("a"))
+
+    // concat two maps
+
+    val mapA = Map("a"->1, "b"->2,"c"->3)
+    val mapB = Map("d"->4, "e"->5, "b"->6)
+    val mergedMap = mapA ++ mapB
+
+    println(mergedMap)
+
+    //Transoform the keys and transform the values
+
+    val incrementValue = immutableMap.mapValues(_ +1)
+    val transformKey = immutableMap.map{case(k,v)=>(k.toUpperCase, v)}
+    println(transformKey)
+    incrementValue.foreach {
+      case (key, value) => println(s"$key->$value")
+    }
   }
 }
