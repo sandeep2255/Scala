@@ -23,6 +23,6 @@ object Iterators{
 
     // lazy can't be used with var
     // lazy var eval_val: Int = 20
-    
+
   }
 }
