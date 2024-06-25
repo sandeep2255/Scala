@@ -85,6 +85,6 @@ object Workflow{
 
     val cumulative_sum = num.scan(0)(_+_)
     println(cumulative_sum)
-    
+
   }
 }
